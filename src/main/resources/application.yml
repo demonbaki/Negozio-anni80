@@ -1,0 +1,38 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: Demontis
+
+  data:
+    jpa:
+      repositories:
+        # 'bootstrap-mode' valori ammessi:
+        #   - DEFAULT -> I repositories vengono inizializzati all'avvio dell'applicazione
+        #   - DEFERRED -> I repositories vengono inizializzati all'avvio dell'applicazione ma in modo asincrono
+        #   - LAZY -> I repositories vengono inizializzati nel momento in cui vengono richiamati (velocizza l'avvio dell'applicazione ma aumenta i tempi di latenza alla prima chiamata)
+        bootstrap-mode: DEFAULT
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cgmprova2?createDatabaseIfNotExist=true&autoReconnect=true&useSLL=false&useLegacyDatetimeCode=false
+    username: root
+    password: rootroot
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        '[format_sql]': true
+        jdbc:
+        '[time_zone]': Europe/Rome
+        generate_statistics: false
+    show-sql: true
+  sql:
+    init:
+
+      #never: NON viene eseuite le istruzioni sql nel file data.sql sotto la cartella resources
+      #always: vengono SEMPRE eseguite le istruizioni  sql presenti nel file data.sql sotto la cartella resorces all'avvio dell'app
+      mode: never
+
